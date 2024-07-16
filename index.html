@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Compras</title>
+    <link rel="stylesheet" href="dist/css/styles.min.css">
+</head>
+<body>
+    <h1>Lista de Compras</h1>
+    <form id="itemForm">
+        <input type="text" id="itemName" placeholder="Nome do item" required>
+        <input type="number" id="itemQuantity" placeholder="Quantidade" min="1" required>
+        <input type="number" id="itemPrice" placeholder="Preço" min="0" step="0.01" required>
+        <select id="itemCategory" required>
+            <option value="" disabled selected>Selecione a categoria</option>
+            <option value="comida">Comida</option>
+            <option value="limpeza">Limpeza</option>
+            <option value="higiene">Higiene</option>
+        </select>
+        <button type="submit">Adicionar Item</button>
+    </form>
+    <div id="flashMessage" class="flash-message">Item salvo com sucesso!</div>
+    <ul id="itemList"></ul>
+    <p class="total">Valor Total: R$ <span id="totalPrice">0.00</span></p>
+    <script src="dist/js/app.min.js"></script>
+</body>
+</html>
