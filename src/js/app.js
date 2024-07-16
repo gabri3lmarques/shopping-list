@@ -44,6 +44,7 @@ class ShoppingList {
             if (this.editIndex !== null) {
                 this.items[this.editIndex] = { name, quantity, price, category };
                 this.editIndex = null;
+                this.submitButton.classList.remove('edit');
                 this.submitButton.textContent = 'Adicionar Item';
             } else {
                 this.items.push({ name, quantity, price, category });
@@ -72,6 +73,7 @@ class ShoppingList {
         this.itemCategory.value = item.category;
         this.editIndex = index;
         this.submitButton.textContent = 'Salvar';
+        this.submitButton.classList.add('edit');
     }
 
     renderItems() {
@@ -79,16 +81,18 @@ class ShoppingList {
         this.items.forEach((item, index) => {
             const li = document.createElement('li');
             let div = document.createElement('div');
-            div.insertAdjacentHTML('beforeend',`<span class="itemName">${item.name}</span>`);
+            div.insertAdjacentHTML('beforeend',`<span class="itemName"><strong>${item.name}</strong></span>`);
             div.insertAdjacentHTML('beforeend',`<span class="itemQuantity">${item.quantity}x</span>`);
             div.insertAdjacentHTML('beforeend',`<span class="itemPrice">R$${item.price.toFixed(2)}</span>`);
             div.insertAdjacentHTML('beforeend',`<span class="itemCategory">${item.category}</span>`);
             li.appendChild(div);
             const editButton = document.createElement('button');
-            editButton.textContent = 'Editar';
+            editButton.innerHTML = '&#128221';
+            editButton.classList.add('edit-button');
             editButton.onclick = () => this.editItem(index);
             const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Deletar';
+            deleteButton.classList.add('delete-button');
+            deleteButton.innerHTML = '&#128163';
             deleteButton.onclick = () => this.deleteItem(index);
             li.appendChild(editButton);
             li.appendChild(deleteButton);
